@@ -12,23 +12,24 @@ struct StatsView: View {
     @State var showingDetail = false
     @State var countryCode: String?
 
+    @State private var countryResult: CountryData?
+
     var body: some View {
         VStack(alignment: .center, spacing: 16) {
-            downloadData(countryCode: nil)
             Group {
-                Image(systemName: "flag.fill")
+                Image(uiImage: UIImage(named: "EarthImage")!)
                     .resizable()
                     .frame(width: 100, height: 100)
                     .foregroundColor(.blue)
                 Spacer().frame(height: -20)
-                Text("India")
+                Text(countryCode ?? "Worldwide")
                     .bold()
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .foregroundColor(.black)
                     .cornerRadius(5.0)
                 Spacer().frame(height: 5)
-                Text("Active Cases \n \(2000000)")
+                Text("Active Cases \n \(countryResult?.cases ?? 0)")
                     .bold()
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
@@ -39,23 +40,25 @@ struct StatsView: View {
                     .foregroundColor(.white)
                     .cornerRadius(20.0)
                 Spacer().frame(height: 5)
-                Text("Deaths \n \(2000000)")
+                Text("Deaths \n \(countryResult?.deaths ?? 0)")
                     .bold()
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .padding(.horizontal, 100)
                     .padding(.bottom, 10)
-                    .padding(.top, 10)                    .background(Color.red)
+                    .padding(.top, 10)
+                    .background(Color.red)
                     .foregroundColor(.white)
                     .cornerRadius(20.0)
                 Spacer().frame(height: 5)
-                Text("Recoveries \n \(2000000)")
+                Text("Recoveries \n \(countryResult?.recovered ?? 0)")
                     .bold()
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .padding(.horizontal, 100)
                     .padding(.bottom, 10)
-                    .padding(.top, 10)                    .background(Color.green)
+                    .padding(.top, 10)
+                    .background(Color.green)
                     .foregroundColor(.white)
                     .cornerRadius(20.0)
                 Spacer().frame(height: 5)
@@ -67,6 +70,7 @@ struct StatsView: View {
                         .foregroundColor(.secondary)
                     Button(action: {
                         print("Refresh!!")
+                        downloadData(countryCode: countryCode)
                     }) {
                         Image(systemName: "arrow.clockwise")
                             .font(.largeTitle)
@@ -85,31 +89,38 @@ struct StatsView: View {
                     Image(systemName: "globe")
                         .foregroundColor(.red)
                         .font(.largeTitle)
-                        .frame(width: 44, height: 44)                }
+                        .frame(width: 44, height: 44)
+                }
                     .sheet(isPresented: $showingDetail) {
                         CountrySelector()
                 }
             }
         }
         .padding()
+        .onAppear {
+            downloadData(countryCode: countryCode)
+        }
     }
 
 
     func downloadData(countryCode: String?) {
         APIHelper.shared.downloadData(forCountryCode: countryCode) {  result in
-//            guard let self = self else { return }
             print(result)
             switch result {
-            case .success(let statistic):
-//                self.updateUI(with: statistic)
-            case .failure(let error):
-//                self.showErrorAlert(title: "Unable to retrieve data", message: error.rawValue)
+            case .success(let stats):
                 DispatchQueue.main.async {
-//                    self.finishedDownloading = true
-//                    self.refreshButton.layer.removeAllAnimations()
-//                    self.confirmedCasesNumberLabel.text = "0"
-//                    self.confirmedDeathsNumberLabel.text = "0"
-//                    self.confirmedRecoveriesNumberLabel.text = "0"
+                    // update our UI
+                    self.countryResult = stats
+                }
+            case .failure(let error):
+                print(error)
+                //                self.showErrorAlert(title: "Unable to retrieve data", message: error.rawValue)
+                DispatchQueue.main.async {
+                    //                    self.finishedDownloading = true
+                    //                    self.refreshButton.layer.removeAllAnimations()
+                    //                    self.confirmedCasesNumberLabel.text = "0"
+                    //                    self.confirmedDeathsNumberLabel.text = "0"
+                    //                    self.confirmedRecoveriesNumberLabel.text = "0"
                 }
             }
         }
