@@ -10,19 +10,19 @@ import SwiftUI
 
 struct StatsView: View {
     @State var showingDetail = false
-    @State var countryCode: String?
+    @State var countryCode: Country?
 
     @State private var countryResult: CountryData?
 
     var body: some View {
         VStack(alignment: .center, spacing: 16) {
             Group {
-                Image(uiImage: UIImage(named: "EarthImage")!)
+                Image(uiImage: ((countryCode?.flagImage) ?? UIImage(named: "EarthImage"))!)
                     .resizable()
                     .frame(width: 100, height: 100)
                     .foregroundColor(.blue)
                 Spacer().frame(height: -20)
-                Text(countryCode ?? "Worldwide")
+                Text(countryCode?.name ?? "Worldwide")
                     .bold()
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
@@ -70,7 +70,7 @@ struct StatsView: View {
                         .foregroundColor(.secondary)
                     Button(action: {
                         print("Refresh!!")
-                        downloadData(countryCode: countryCode)
+                        self.downloadData(countryCode: self.countryCode?.name)
                     }) {
                         Image(systemName: "arrow.clockwise")
                             .font(.largeTitle)
@@ -91,14 +91,16 @@ struct StatsView: View {
                         .font(.largeTitle)
                         .frame(width: 44, height: 44)
                 }
-                    .sheet(isPresented: $showingDetail) {
-                        CountrySelector()
+                .sheet(isPresented: $showingDetail, onDismiss: {
+                    self.downloadData(countryCode: self.countryCode?.name)
+                }){
+                    CountrySelector(countryCode: self.$countryCode)
                 }
             }
         }
         .padding()
         .onAppear {
-            downloadData(countryCode: countryCode)
+            self.downloadData(countryCode: self.countryCode?.name)
         }
     }
 

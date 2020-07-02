@@ -12,7 +12,10 @@ struct CountrySelector: View {
     @State private var searchText = ""
     @State private var showCancelButton: Bool = false
     @State private var chunkedCountries = [[Country]]()
-    
+    @State var selectedCountry: Country?
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var countryCode: Country?
+
     var body: some View {
         NavigationView {
             VStack {
@@ -47,18 +50,19 @@ struct CountrySelector: View {
                 }
                 .padding(.horizontal)
                 .navigationBarHidden(showCancelButton)// .animation(.default) // animation does not work properly
-                
-                List {
+                List(selection: $selectedCountry) {
                     ForEach(0..<chunkedCountries.count) { index in
                         HStack {
-                            ForEach(chunkedCountries[index], id: \.self) { country in
-                                
+                            ForEach(self.chunkedCountries[index], id: \.self) { country in
                                 VStack {
                                     Image(uiImage: country.flagImage)
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: (UIScreen.screenWidth - 100) / 3, height: (UIScreen.screenWidth - 100) / 3)
                                     Text(country.name)
+                                }.onTapGesture {
+                                    self.countryCode = country
+                                    self.presentationMode.wrappedValue.dismiss()
                                 }
                             }
                         }
@@ -74,7 +78,7 @@ struct CountrySelector: View {
             }
             .navigationBarTitle(Text("Search"))
         }.onAppear {
-            populateCountriesArray()
+            self.populateCountriesArray()
         }
     }
     
@@ -96,8 +100,4 @@ struct CountrySelector: View {
     }
 }
 
-struct CountrySelector_Previews: PreviewProvider {
-    static var previews: some View {
-        CountrySelector()
-    }
-}
+
