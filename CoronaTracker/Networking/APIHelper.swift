@@ -19,10 +19,10 @@ class APIHelper {
 
         var url: URL
         if let countryCode = code {
-            url = URL(string: "https://disease.sh/v2/countries/\(countryCode)")!
+            url = URL(string: "https://disease.sh/v3/covid-19/countries/\(countryCode)")!
         }
         else {
-            url = URL(string: "https://disease.sh/v2/all")!
+            url = URL(string: "https://disease.sh/v3/covid-19/all")!
         }
 
         let dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
