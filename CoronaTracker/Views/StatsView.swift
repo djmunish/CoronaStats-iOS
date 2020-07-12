@@ -39,7 +39,7 @@ struct StatsView: View {
                     .cornerRadius(5.0)
                 Spacer().frame(height: 5)
             }
-            List {
+            List() {
                 ForEach(0..<4) { index in
                     Text("Active Cases \n \(self.countryResult?.cases ?? 0)")
                         .bold()
