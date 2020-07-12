@@ -10,18 +10,11 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
+
     var body: some View {
-        TabView {
+        NavigationView {
             StatsView()
-                .tabItem{
-                    Image(systemName: "list.bullet.below.rectangle")
-                    Text("Stats")
-            }
-            MapView(coordinate: CLLocationCoordinate2D(latitude: 20, longitude: 30))
-                .tabItem{
-                    Image(systemName: "map")
-                    Text("Map")
-            }
+            .navigationBarTitle(Text("Stats"), displayMode: .inline)
         }
     }
 }

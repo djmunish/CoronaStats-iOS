@@ -11,6 +11,7 @@ import SwiftUI
 struct CountrySelector: View {
     @State private var searchText = ""
     @State private var showCancelButton: Bool = false
+    @State private var countries: [Country]!
     @State private var chunkedCountries = [[Country]]()
     @State var selectedCountry: Country?
     @Environment(\.presentationMode) var presentationMode
@@ -27,6 +28,7 @@ struct CountrySelector: View {
                             self.showCancelButton = true
                         }, onCommit: {
                             print("onCommit")
+                            self.searchCountry()
                         }).foregroundColor(.primary)
                         
                         Button(action: {
@@ -51,9 +53,9 @@ struct CountrySelector: View {
                 .padding(.horizontal)
                 .navigationBarHidden(showCancelButton)// .animation(.default) // animation does not work properly
                 List(selection: $selectedCountry) {
-                    ForEach(0..<chunkedCountries.count) { index in
+                    ForEach(self.chunkedCountries, id: \.self) { item in
                         HStack {
-                            ForEach(self.chunkedCountries[index], id: \.self) { country in
+                            ForEach(item, id: \.self) { country in
                                 VStack {
                                     Image(uiImage: country.flagImage)
                                         .resizable()
@@ -78,26 +80,39 @@ struct CountrySelector: View {
             }
             .navigationBarTitle(Text("Search"))
         }.onAppear {
-            self.populateCountriesArray()
+            self.populateCountriesArray(arr: self.countries)
         }
     }
     
-    func populateCountriesArray() {
-        var countries = [Country]()
-
-        for code in NSLocale.isoCountryCodes  {
+    func populateCountriesArray(arr: [Country]?) {
+        if let input = arr {
+            chunkedCountries = input.chunked(into: 3)
+        } else {
+            countries = [Country]()
+            for code in NSLocale.isoCountryCodes  {
                 
-            let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
-            let name = NSLocale(localeIdentifier: "en_UK").displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
-            
-            if let flagImage = UIImage(named: name.lowercased().replacingOccurrences(of: " ", with: "-")) {
-                countries.append(Country(name: name, code: code, flagImage: flagImage))
+                let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
+                let name = NSLocale(localeIdentifier: "en_UK").displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
+
+                if let flagImage = UIImage(named: name.lowercased().replacingOccurrences(of: " ", with: "-")) {
+                    countries.append(Country(name: name, code: code, flagImage: flagImage))
+                }
             }
+            countries = countries.sorted { $0.name < $1.name }
+            countries.insert(Country(name: "Worldwide",
+                                     code: nil,
+                                     flagImage: UIImage(named: "EarthImage")!),
+                             at: 0)
+            chunkedCountries = countries.chunked(into: 3)
         }
-        countries = countries.sorted { $0.name < $1.name }
-        countries.insert(Country(name: "Worldwide", code: nil, flagImage: UIImage(named: "EarthImage")!), at: 0)
-        chunkedCountries = countries.chunked(into: 3)
+    }
+
+    private func searchCountry() {
+        let filteredCountries = countries.filter {
+            $0.name.contains(searchText)
+        }
+        if filteredCountries.count > 0 {
+            populateCountriesArray(arr: filteredCountries)
+        }
     }
 }
-
-
