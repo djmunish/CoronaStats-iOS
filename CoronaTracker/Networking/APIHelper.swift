@@ -20,8 +20,7 @@ class APIHelper {
         
         if !connectedToNetwork() {
             completion(.failure(.noInternet))
-        }
-        else {
+        } else {
             var url: URL
             if let countryCode = code {
                 url = URL(string: "https://disease.sh/v3/covid-19/countries/\(countryCode)")!

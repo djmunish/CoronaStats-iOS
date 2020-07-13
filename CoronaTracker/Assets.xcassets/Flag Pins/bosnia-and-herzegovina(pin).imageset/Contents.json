@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "bosnia-and-herzegovina(pin).png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "bosnia-and-herzegovina(pin)@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "bosnia-and-herzegovina(pin)@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

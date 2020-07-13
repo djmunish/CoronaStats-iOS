@@ -60,9 +60,12 @@ struct CountrySelector: View {
                                     Image(uiImage: country.flagImage)
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: (UIScreen.screenWidth - 100) / 3, height: (UIScreen.screenWidth - 100) / 3)
                                     Text(country.name)
-                                }.onTapGesture {
+                                    .multilineTextAlignment(.center)
+                                    .lineLimit(3)
+                                }
+                                .frame(width: (UIScreen.screenWidth - 50) / 3, height: (UIScreen.screenWidth - 50) / 3)
+                                .onTapGesture {
                                     self.countryCode = country
                                     self.presentationMode.wrappedValue.dismiss()
                                 }

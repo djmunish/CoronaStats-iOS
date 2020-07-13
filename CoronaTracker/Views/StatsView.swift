@@ -13,11 +13,12 @@ struct StatsView: View {
     @State var countryCode: Country?
     @State var percentageRecovered = 0.0
     @State var countryResult: CountryData?
+    @State private var listData: [ResultModel] = [ResultModel]()
+    @State var progressValue: Float = 0.5
 
     var body: some View {
         VStack(alignment: .center, spacing: 16) {
             MapView(countrySelected: countryResult)
-
             Group {
                 Image(uiImage: ((countryCode?.flagImage) ?? UIImage(named: "EarthImage"))!)
                     .resizable()
@@ -40,88 +41,65 @@ struct StatsView: View {
                 Spacer().frame(height: 5)
             }
             List() {
-                ForEach(0..<4) { index in
-                    Text("Active Cases \n \(self.countryResult?.cases ?? 0)")
+                ForEach(listData, id: \.self) { item in
+                    HStack{
+                        Text(item.title)
                         .bold()
-                        .multilineTextAlignment(.center)
-                        .lineLimit(2)
-                        .padding(.horizontal, 90)
-                        .padding(.bottom, 10)
-                        .padding(.top, 10)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(20.0)
+                        .foregroundColor(.black)
+                        Spacer()
+
+
+                        if item.isProgressBar {
+                            ProgressBar(countryResult: item)
+                            .frame(width: 150.0, height: 150.0)
+                            .padding(40.0)
+                        } else {
+                            Text(item.result)
+                            .bold()
+                            .padding(.bottom, 10)
+                            .padding(.horizontal, 10)
+                            .padding(.top, 10)
+                            .background(item.bgColor)
+                            .foregroundColor(.white)
+                            .cornerRadius(20.0)
+                        }
+
+                    }
+                .padding()
                 }
 
             }
-//                Text("Active Cases \n \(countryResult?.cases ?? 0)")
-//                    .bold()
-//                    .multilineTextAlignment(.center)
-//                    .lineLimit(2)
-//                    .padding(.horizontal, 90)
-//                    .padding(.bottom, 10)
-//                    .padding(.top, 10)
-//                    .background(Color.blue)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(20.0)
-//                Spacer().frame(height: 5)
-//                Text("Deaths \n \(countryResult?.deaths ?? 0)")
-//                    .bold()
-//                    .multilineTextAlignment(.center)
-//                    .lineLimit(2)
-//                    .padding(.horizontal, 100)
-//                    .padding(.bottom, 10)
-//                    .padding(.top, 10)
-//                    .background(Color.red)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(20.0)
-//                Spacer().frame(height: 5)
-//                Text("Recoveries \n \(countryResult?.recovered ?? 0)")
-//                    .bold()
-//                    .multilineTextAlignment(.center)
-//                    .lineLimit(2)
-//                    .padding(.horizontal, 100)
-//                    .padding(.bottom, 10)
-//                    .padding(.top, 10)
-//                    .background(Color.green)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(20.0)
-//                Spacer().frame(height: 5)
-//            }
-            HStack{
+            HStack {
                 Group {
-                HStack {
-                    Text("Last Updated:")
-                        .bold()
-                        .foregroundColor(.secondary)
                     Button(action: {
-                        print("Refresh!!")
-                        self.downloadData(countryCode: self.countryCode?.code)
+                        self.showingDetail.toggle()
                     }) {
-                        Image(systemName: "arrow.clockwise")
+                        Image(systemName: "globe")
+                            .foregroundColor(.red)
                             .font(.largeTitle)
-                            .foregroundColor(.black)
-                            .frame(width: 44, height: 44)
+                            .padding(.vertical, 20).padding(.horizontal, 20)
+                    }
+                    .sheet(isPresented: $showingDetail, onDismiss: {
+                        self.downloadData(countryCode: self.countryCode?.code)
+                    }){
+                        CountrySelector(countryCode: self.$countryCode)
                     }
                 }
-            }
-            Spacer()
-                .frame(height: 10)
-            Group {
-                Button(action: {
-                    self.showingDetail.toggle()
-                }) {
-                    Image(systemName: "globe")
-                        .foregroundColor(.red)
-                        .font(.largeTitle)
-                        .frame(width: 44, height: 44)
+                Spacer()
+                Group {
+                    HStack {
+                        Button(action: {
+                            self.downloadData(countryCode: self.countryCode?.code)
+                        }) {
+                            Image(systemName: "arrow.clockwise")
+                                .font(.largeTitle)
+                                .foregroundColor(.black)
+                            .padding(.vertical, 20).padding(.horizontal, 20)
+
+                        }
+
+                    }
                 }
-                .sheet(isPresented: $showingDetail, onDismiss: {
-                    self.downloadData(countryCode: self.countryCode?.code)
-                }){
-                    CountrySelector(countryCode: self.$countryCode)
-                }
-            }
         }
         .padding()
         }
@@ -129,7 +107,6 @@ struct StatsView: View {
             self.downloadData(countryCode: self.countryCode?.code)
         }
     }
-
 
     func downloadData(countryCode: String?) {
         APIHelper.shared.downloadData(forCountryCode: countryCode) {  result in
@@ -139,7 +116,9 @@ struct StatsView: View {
                 DispatchQueue.main.async {
                     // update our UI
                     self.countryResult = stats
-                    self.calculate(stats: stats)
+                    if let data = self.displayString(countryData: stats){
+                        self.listData = data
+                    }
                 }
             case .failure(let error):
                 print(error.rawValue)

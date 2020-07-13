@@ -13,6 +13,9 @@
 		FA1C5F8624AD30E700A514E6 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5F8524AD30E700A514E6 /* APIHelper.swift */; };
 		FA1C5F8924AD311600A514E6 /* CountryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5F8824AD311600A514E6 /* CountryData.swift */; };
 		FA1C5F8B24AD316D00A514E6 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5F8A24AD316C00A514E6 /* ErrorMessage.swift */; };
+		FA2FD86224BBB08C0046DA11 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FD86124BBB08C0046DA11 /* ResultModel.swift */; };
+		FA2FD86424BBB8D30046DA11 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FD86324BBB8D30046DA11 /* ProgressBar.swift */; };
+		FA2FD86624BBC7140046DA11 /* PhotoAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FD86524BBC7140046DA11 /* PhotoAnnotation.swift */; };
 		FA97C71524AC38EF00495BF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97C71424AC38EF00495BF4 /* AppDelegate.swift */; };
 		FA97C71724AC38EF00495BF4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97C71624AC38EF00495BF4 /* SceneDelegate.swift */; };
 		FA97C71924AC38EF00495BF4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97C71824AC38EF00495BF4 /* ContentView.swift */; };
@@ -49,6 +52,9 @@
 		FA1C5F8524AD30E700A514E6 /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		FA1C5F8824AD311600A514E6 /* CountryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryData.swift; sourceTree = "<group>"; };
 		FA1C5F8A24AD316C00A514E6 /* ErrorMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
+		FA2FD86124BBB08C0046DA11 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
+		FA2FD86324BBB8D30046DA11 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		FA2FD86524BBC7140046DA11 /* PhotoAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAnnotation.swift; sourceTree = "<group>"; };
 		FA97C71124AC38EF00495BF4 /* CoronaTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoronaTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA97C71424AC38EF00495BF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA97C71624AC38EF00495BF4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				FA1C5F8224AD2D1F00A514E6 /* Extensions.swift */,
+				FA2FD86524BBC7140046DA11 /* PhotoAnnotation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -114,6 +121,7 @@
 			children = (
 				FA1C5F8824AD311600A514E6 /* CountryData.swift */,
 				580AB4B524AD932D00D48D1E /* Countries.swift */,
+				FA2FD86124BBB08C0046DA11 /* ResultModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -188,6 +196,7 @@
 				FA97C74524AC3E7C00495BF4 /* MapView.swift */,
 				FA97C74724AC3EF300495BF4 /* StatsView.swift */,
 				FA1C5F7F24AD26E300A514E6 /* CountrySelector.swift */,
+				FA2FD86324BBB8D30046DA11 /* ProgressBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -331,7 +340,10 @@
 				FA97C74624AC3E7C00495BF4 /* MapView.swift in Sources */,
 				FA1C5F8924AD311600A514E6 /* CountryData.swift in Sources */,
 				FA1C5F8624AD30E700A514E6 /* APIHelper.swift in Sources */,
+				FA2FD86224BBB08C0046DA11 /* ResultModel.swift in Sources */,
 				FA97C71724AC38EF00495BF4 /* SceneDelegate.swift in Sources */,
+				FA2FD86424BBB8D30046DA11 /* ProgressBar.swift in Sources */,
+				FA2FD86624BBC7140046DA11 /* PhotoAnnotation.swift in Sources */,
 				FA97C71924AC38EF00495BF4 /* ContentView.swift in Sources */,
 				FA1C5F8324AD2D1F00A514E6 /* Extensions.swift in Sources */,
 			);
