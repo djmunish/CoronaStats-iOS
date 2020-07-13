@@ -47,8 +47,6 @@ struct StatsView: View {
                         .bold()
                         .foregroundColor(.black)
                         Spacer()
-
-
                         if item.isProgressBar {
                             ProgressBar(countryResult: item)
                             .frame(width: 150.0, height: 150.0)
@@ -63,11 +61,9 @@ struct StatsView: View {
                             .foregroundColor(.white)
                             .cornerRadius(20.0)
                         }
-
                     }
                 .padding()
                 }
-
             }
             HStack {
                 Group {
@@ -97,7 +93,6 @@ struct StatsView: View {
                             .padding(.vertical, 20).padding(.horizontal, 20)
 
                         }
-
                     }
                 }
         }

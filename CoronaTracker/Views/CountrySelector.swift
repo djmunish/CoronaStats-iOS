@@ -20,39 +20,11 @@ struct CountrySelector: View {
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                        
-                        TextField("search", text: $searchText, onEditingChanged: { isEditing in
-                            self.showCancelButton = true
-                        }, onCommit: {
-                            print("onCommit")
-                            self.searchCountry()
-                        }).foregroundColor(.primary)
-                        
-                        Button(action: {
-                            self.searchText = ""
-                        }) {
-                            Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
-                        }
+                SearchBar(text: $searchText, placeholder: "Search Country")
+                    .searchCallback {
+                        self.searchCountry()
                     }
-                    .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
-                    .foregroundColor(.secondary)
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(10.0)
-                    
-                    if showCancelButton  {
-                        Button("Cancel") {
-                            self.searchText = ""
-                            self.showCancelButton = false
-                        }
-                        .foregroundColor(Color(.systemBlue))
-                    }
-                }
-                .padding(.horizontal)
-                .navigationBarHidden(showCancelButton)// .animation(.default) // animation does not work properly
-                List(selection: $selectedCountry) {
+                 List(selection: $selectedCountry) {
                     ForEach(self.chunkedCountries, id: \.self) { item in
                         HStack {
                             ForEach(item, id: \.self) { country in
@@ -73,6 +45,7 @@ struct CountrySelector: View {
                         }
                     }
                 }
+                .resignKeyboardOnDragGesture()
                 .onAppear {
                    UITableView.appearance().separatorStyle = .none
                    // can update any other property like tableFooterView etc
@@ -81,7 +54,7 @@ struct CountrySelector: View {
                    UITableView.appearance().separatorStyle = .singleLine
                 }
             }
-            .navigationBarTitle(Text("Search"))
+            .navigationBarTitle("Search")
         }.onAppear {
             self.populateCountriesArray(arr: self.countries)
         }
@@ -116,6 +89,8 @@ struct CountrySelector: View {
         }
         if filteredCountries.count > 0 {
             populateCountriesArray(arr: filteredCountries)
+        } else if (searchText.count == 0) {
+            populateCountriesArray(arr: countries)
         }
     }
 }
