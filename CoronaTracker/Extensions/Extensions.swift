@@ -10,9 +10,9 @@ import UIKit
 import SwiftUI
 
 extension UIScreen {
-   static let screenWidth = UIScreen.main.bounds.size.width
-   static let screenHeight = UIScreen.main.bounds.size.height
-   static let screenSize = UIScreen.main.bounds.size
+    static let screenWidth = UIScreen.main.bounds.size.width
+    static let screenHeight = UIScreen.main.bounds.size.height
+    static let screenSize = UIScreen.main.bounds.size
 }
 
 extension Array {
@@ -38,31 +38,42 @@ extension View {
             return nil
         }
 
-        let recoveryPer = percentageCalculator(data)
+        let recoveryPer = percentageCalculator(Double(data.recovered), data)
+        let deathPer = percentageCalculator(Double(data.deaths), data)
 
         let active = ResultModel(title: "Active Cases",
                                  result: String(data.cases.withCommas()),
                                  bgColor: Color.blue)
+
         let deaths = ResultModel(title: "Deaths",
                                  result: String(data.deaths.withCommas()),
                                  bgColor: Color.red)
+
         let recovered = ResultModel(title: "Recovered",
                                     result: String(data.recovered.withCommas()),
                                     bgColor: Color.green)
+
         let recoveryRate = ResultModel(title: "Recovery Rate",
                                        result: String(recoveryPer) + " %",
                                        resultPercentage: recoveryPer,
                                        bgColor: getColorForThePercentage(recoveryPer),
-                                       isProgressBar: true
-                                       )
+                                       isProgressBar: true)
+
+        let deathRate = ResultModel(title: "Death Rate",
+                                    result: String(deathPer) + " %",
+                                    resultPercentage: deathPer,
+                                    bgColor: getColorForThePercentage(1 - deathPer),
+                                    isProgressBar: true)
+
         return [active,
                 deaths,
                 recovered,
-                recoveryRate]
+                recoveryRate,
+                deathRate]
     }
 
-    private func percentageCalculator(_ countryData: CountryData) -> Double {
-        Double(countryData.recovered) / Double(countryData.cases)
+    private func percentageCalculator(_ cases: Double, _ countryData: CountryData) -> Double {
+        cases / Double(countryData.cases)
     }
 
     private func getColorForThePercentage(_ percentage: Double) -> Color {
@@ -83,7 +94,6 @@ extension View {
         }
     }
 }
-
 
 extension Int {
     func withCommas() -> String {

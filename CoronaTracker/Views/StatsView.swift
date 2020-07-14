@@ -36,7 +36,6 @@ struct StatsView: View {
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .padding(.top, 25)
-                    .foregroundColor(.black)
                     .cornerRadius(5.0)
                 Spacer().frame(height: 5)
             }
@@ -45,34 +44,34 @@ struct StatsView: View {
                     HStack{
                         Text(item.title)
                         .bold()
-                        .foregroundColor(.black)
                         Spacer()
                         if item.isProgressBar {
                             ProgressBar(countryResult: item)
-                            .frame(width: 150.0, height: 150.0)
-                            .padding(40.0)
+                                .frame(width: (UIScreen.screenWidth - 220), height: (UIScreen.screenWidth - 220))
                         } else {
                             Text(item.result)
+                            .foregroundColor(Color("resultColor"))
                             .bold()
                             .padding(.bottom, 10)
                             .padding(.horizontal, 10)
                             .padding(.top, 10)
                             .background(item.bgColor)
-                            .foregroundColor(.white)
                             .cornerRadius(20.0)
                         }
                     }
                 .padding()
                 }
             }
+            .listStyle(PlainListStyle())
             HStack {
                 Group {
                     Button(action: {
                         self.showingDetail.toggle()
                     }) {
                         Image(systemName: "globe")
+                            .resizable()
+                            .frame(width: 22, height: 22)
                             .foregroundColor(.red)
-                            .font(.largeTitle)
                             .padding(.vertical, 20).padding(.horizontal, 20)
                     }
                     .sheet(isPresented: $showingDetail, onDismiss: {
@@ -88,8 +87,8 @@ struct StatsView: View {
                             self.downloadData(countryCode: self.countryCode?.code)
                         }) {
                             Image(systemName: "arrow.clockwise")
-                                .font(.largeTitle)
-                                .foregroundColor(.black)
+                                .resizable()
+                                .frame(width: 22, height: 26)                                .foregroundColor(Color("buttonColor"))
                             .padding(.vertical, 20).padding(.horizontal, 20)
 
                         }
