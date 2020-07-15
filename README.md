@@ -4,10 +4,10 @@ A simple app that fetches stats about COVID-19. App UI is build using SwiftUI. #
 ### Screenshots for various Screens
 
 <p float="left">
-  <img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/1.PNG" width="250" height="400" />
-<img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/2.PNG" width="250" height="400" />
-<img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/3.PNG" width="250" height="400" />
-<img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/4.PNG" width="250" height="400" />
+  <img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/1.PNG" width="200" height="400" />
+<img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/2.PNG" width="200" height="400" />
+<img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/3.PNG" width="200" height="400" />
+<img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/4.PNG" width="200" height="400" />
 </p>
 
 ### Demo
