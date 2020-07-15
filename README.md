@@ -4,15 +4,15 @@ A simple app that fetches stats about COVID-19. App UI is build using SwiftUI. #
 ### Screenshots for various Screens
 
 <p float="left">
-  <img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/1.PNG" width="200" height="400" />
-<img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/2.PNG" width="200" height="400" />
-<img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/3.PNG" width="200" height="400" />
-<img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/4.PNG" width="200" height="400" />
-<img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/5.PNG" width="200" height="400" />
-<img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/6.PNG" width="200" height="400" />
+  <img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/1.PNG" width="250" height="400" />
+<img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/2.PNG" width="250" height="400" />
+<img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/3.PNG" width="250" height="400" />
+<img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/4.PNG" width="250" height="400" />
 </p>
 
 ### Demo
+
+![Alt text](https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/demo.gif)
 
 - https://appetize.io/app/j53pvz43eh04pgx6mc90h8pbm0
 
