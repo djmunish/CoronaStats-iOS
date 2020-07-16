@@ -14,6 +14,8 @@ A simple app that fetches stats about COVID-19. App UI is build using SwiftUI. #
 
 ![Alt text](https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/demo.gif)
 
+👉🏻 https://appetize.io/app/rvn3pdwmqk7w4xp7jr5cr0gv4w
+
 ### Features
 1) Current ```Coronavirus 🦠 worldwide 🌏``` stats.
 2) Stats of ```specific country 🏳️``` are also filtered. 
