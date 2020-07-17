@@ -8,13 +8,13 @@ A simple app that fetches stats about COVID-19. App UI is build using SwiftUI. #
 <img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/2.PNG" width="200" height="400" />
 <img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/3.PNG" width="200" height="400" />
 <img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/4.PNG" width="200" height="400" />
-<img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/5.PNG" width="200" height="400" />
-<img src="https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/6.PNG" width="200" height="400" />
 </p>
 
 ### Demo
 
-- https://appetize.io/app/j53pvz43eh04pgx6mc90h8pbm0
+![Alt text](https://github.com/djmunish/CoronaStats-iOS/blob/master/Preview/demo.gif)
+
+👉🏻 https://appetize.io/app/rvn3pdwmqk7w4xp7jr5cr0gv4w
 
 ### Features
 1) Current ```Coronavirus 🦠 worldwide 🌏``` stats.
@@ -23,6 +23,7 @@ A simple app that fetches stats about COVID-19. App UI is build using SwiftUI. #
 4) Data can be ```refreshed 🔄``` at any time.
 5) ```Map 🗺``` is also integrate to point country on map.
 6) Supports ```Dark mode``` too 🌙.
+7) UI build using ```SwiftUI 🦢```
 
 
 ### Installing the app
