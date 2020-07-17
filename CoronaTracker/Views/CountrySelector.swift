@@ -86,9 +86,11 @@ struct CountrySelector: View {
     private func searchCountry() {
         print(searchText)
         let filteredCountries = countries.filter {
-            $0.name.lowercased().contains(searchText.lowercased())
+            $0.name.range(of: searchText, options: .caseInsensitive) != nil
         }
 
+        
+        print(filteredCountries)
         if filteredCountries.count > 0 {
             populateCountriesArray(arr: filteredCountries)
         } else if (searchText.count == 0) {
