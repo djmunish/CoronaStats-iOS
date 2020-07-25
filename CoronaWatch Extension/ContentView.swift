@@ -64,7 +64,7 @@ struct ContentView: View {
     }
     
     func downloadData(countryCode: String?) {
-        APIHelper.shared.downloadData(forCountryCode: countryCode) {  result in
+        WatchAPIHelper.shared.downloadData(forCountryCode: countryCode) {  result in
             print(result)
             switch result {
             case .success(let stats):

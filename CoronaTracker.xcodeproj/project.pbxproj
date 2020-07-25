@@ -19,7 +19,6 @@
 		58051D1724C8FEEE007B5C69 /* CountryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5F8824AD311600A514E6 /* CountryData.swift */; };
 		58051D1824C8FEEE007B5C69 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580AB4B524AD932D00D48D1E /* Countries.swift */; };
 		58051D1924C8FEEE007B5C69 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FD86124BBB08C0046DA11 /* ResultModel.swift */; };
-		58051D1C24C8FFED007B5C69 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5F8524AD30E700A514E6 /* APIHelper.swift */; };
 		58051D1D24C9016B007B5C69 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5F8A24AD316C00A514E6 /* ErrorMessage.swift */; };
 		580AB4B624AD932D00D48D1E /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580AB4B524AD932D00D48D1E /* Countries.swift */; };
 		583E8D8524C90ABE000630B0 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FD86324BBB8D30046DA11 /* ProgressBar.swift */; };
@@ -32,6 +31,7 @@
 		583E8D9324CCDB7A000630B0 /* ProgressWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583E8D9224CCDB7A000630B0 /* ProgressWatch.swift */; };
 		583E8D9424CCDBAC000630B0 /* ProgressWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583E8D9224CCDB7A000630B0 /* ProgressWatch.swift */; };
 		583E8D9724CCE147000630B0 /* CountrySelectorWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583E8D9624CCE147000630B0 /* CountrySelectorWatch.swift */; };
+		587DCBA824CCF75D007B78DB /* WatchAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DCBA724CCF75D007B78DB /* WatchAPIHelper.swift */; };
 		FA1C5F8024AD26E300A514E6 /* CountrySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5F7F24AD26E300A514E6 /* CountrySelector.swift */; };
 		FA1C5F8324AD2D1F00A514E6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5F8224AD2D1F00A514E6 /* Extensions.swift */; };
 		FA1C5F8624AD30E700A514E6 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5F8524AD30E700A514E6 /* APIHelper.swift */; };
@@ -128,6 +128,7 @@
 		583E8D8F24CCD291000630B0 /* StatsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsRow.swift; sourceTree = "<group>"; };
 		583E8D9224CCDB7A000630B0 /* ProgressWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressWatch.swift; sourceTree = "<group>"; };
 		583E8D9624CCE147000630B0 /* CountrySelectorWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySelectorWatch.swift; sourceTree = "<group>"; };
+		587DCBA724CCF75D007B78DB /* WatchAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAPIHelper.swift; sourceTree = "<group>"; };
 		FA1C5F7F24AD26E300A514E6 /* CountrySelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySelector.swift; sourceTree = "<group>"; };
 		FA1C5F8224AD2D1F00A514E6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FA1C5F8524AD30E700A514E6 /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
@@ -225,6 +226,7 @@
 			children = (
 				583E8D8724C90DA7000630B0 /* PagerManager.swift */,
 				583E8D9624CCE147000630B0 /* CountrySelectorWatch.swift */,
+				587DCBA724CCF75D007B78DB /* WatchAPIHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -548,10 +550,10 @@
 				583E8D9724CCE147000630B0 /* CountrySelectorWatch.swift in Sources */,
 				583E8D8E24CCCACE000630B0 /* CountryRow.swift in Sources */,
 				583E8D9124CCD2ED000630B0 /* StatsRow.swift in Sources */,
+				587DCBA824CCF75D007B78DB /* WatchAPIHelper.swift in Sources */,
 				583E8D8824C90DA7000630B0 /* PagerManager.swift in Sources */,
 				58051D1D24C9016B007B5C69 /* ErrorMessage.swift in Sources */,
 				583E8D8524C90ABE000630B0 /* ProgressBar.swift in Sources */,
-				58051D1C24C8FFED007B5C69 /* APIHelper.swift in Sources */,
 				58051D1724C8FEEE007B5C69 /* CountryData.swift in Sources */,
 				58051D1824C8FEEE007B5C69 /* Countries.swift in Sources */,
 				58051D0624C8FEDB007B5C69 /* ExtensionDelegate.swift in Sources */,
