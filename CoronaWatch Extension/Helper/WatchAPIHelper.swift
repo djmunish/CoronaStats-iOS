@@ -1,17 +1,18 @@
 //
-//  APIHelper.swift
-//  CoronaTracker
+//  WatchAPIHelper.swift
+//  CoronaWatch Extension
 //
-//  Created by Munish Sehdev on 2020-07-01.
+//  Created by Ankur Sehdev on 25/07/20.
 //  Copyright © 2020 Munish Sehdev. All rights reserved.
 //
+
 
 import Foundation
 //import SystemConfiguration
 
-class APIHelper {
+class WatchAPIHelper {
 
-    static let shared = APIHelper()
+    static let shared = WatchAPIHelper()
     
     private init() {}
 
