@@ -16,4 +16,6 @@ struct ResultModel: Hashable {
     var resultPercentage: Double = 0.0
     let bgColor: Color
     var isProgressBar = false
+    var isWatch = false
+    var country: Country?
 }

@@ -11,7 +11,6 @@ import SwiftUI
 struct StatsView: View {
     @State var showingDetail = false
     @State var countryCode: Country?
-    @State var percentageRecovered = 0.0
     @State var countryResult: CountryData?
     @State private var listData: [ResultModel] = [ResultModel]()
     @State var progressValue: Float = 0.5
@@ -126,11 +125,6 @@ struct StatsView: View {
                 }
             }
         }
-    }
-
-    private func calculate(stats: CountryData) {
-        percentageRecovered = Double(stats.recovered * 100 / stats.cases)
-        print(percentageRecovered)
     }
 }
 

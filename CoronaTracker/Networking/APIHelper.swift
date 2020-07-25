@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SystemConfiguration
+//import SystemConfiguration
 
 class APIHelper {
 
@@ -18,9 +18,9 @@ class APIHelper {
     func downloadData(forCountryCode code: String?,
                       completion: @escaping (Result<CountryData, ErrorMessage>) -> ()) {
         
-        if !connectedToNetwork() {
-            completion(.failure(.noInternet))
-        } else {
+//        if !connectedToNetwork() {
+//            completion(.failure(.noInternet))
+//        } else {
             var url: URL
             if let countryCode = code {
                 url = URL(string: "https://disease.sh/v3/covid-19/countries/\(countryCode)")!
@@ -57,31 +57,30 @@ class APIHelper {
                 }
             }
             dataTask.resume()
-        }
+//        }
     }
 
-    private func connectedToNetwork() -> Bool {
-
-        var zeroAddress = sockaddr_in()
-        zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
-        zeroAddress.sin_family = sa_family_t(AF_INET)
-
-        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
-            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
-                SCNetworkReachabilityCreateWithAddress(nil, $0)
-            }
-        }) else {
-            return false
-        }
-
-        var flags: SCNetworkReachabilityFlags = []
-        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
-            return false
-        }
-
-        let isReachable = flags.contains(.reachable)
-        let needsConnection = flags.contains(.connectionRequired)
-
-        return (isReachable && !needsConnection)
-    }
+//    private func connectedToNetwork() -> Bool {
+//        var zeroAddress = sockaddr_in()
+//        zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
+//        zeroAddress.sin_family = sa_family_t(AF_INET)
+//
+//        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
+//            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+//                SCNetworkReachabilityCreateWithAddress(nil, $0)
+//            }
+//        }) else {
+//            return false
+//        }
+//
+//        var flags: SCNetworkReachabilityFlags = []
+//        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
+//            return false
+//        }
+//
+//        let isReachable = flags.contains(.reachable)
+//        let needsConnection = flags.contains(.connectionRequired)
+//
+//        return (isReachable && !needsConnection)
+//    }
 }
